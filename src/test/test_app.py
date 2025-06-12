@@ -1,31 +1,18 @@
-# src/test/test_app.py
+import pytest
+from app.app import add, subtract, multiply, divide
 
-import unittest
+def test_add():
+    assert add(2, 3) == 5
 
-from src.app.app import create_app
+def test_subtract():
+    assert subtract(5, 3) == 2
 
+def test_multiply():
+    assert multiply(4, 3) == 12
 
-class TestApp(unittest.TestCase):
-    """
-    Test suite for the Flask application.
-    """
-    def setUp(self):
-        """
-        Set up the test client before each test.
-        """
-        app = create_app()
-        self.app = app.test_client()
-        self.app.testing = True
+def test_divide():
+    assert divide(10, 2) == 5
 
-
-    def test_hello_world(self):
-        """
-        Test that the root URL returns "Hello, World!".
-        """
-        response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data.decode('utf-8'), 'Hello, World!')
-
-
-if __name__ == '__main__':
-    unittest.main()
+def test_divide_by_zero():
+    with pytest.raises(ValueError):
+        divide(5, 0)
