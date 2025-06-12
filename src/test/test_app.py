@@ -2,22 +2,18 @@ import pytest
 from app.app import add, subtract, multiply, divide
 
 
-def test_add():
-    assert add(2, 3) == 5
+def test_subtract(self):
+    self.assertEqual(subtract(5, 3), 2)
 
 
-def test_subtract():
-    assert subtract(5, 3) == 2
+def test_multiply(self):
+    self.assertEqual(multiply(4, 3), 12)
 
 
-def test_multiply():
-    assert multiply(4, 3) == 12
+def test_divide(self):
+    self.assertEqual(divide(10, 2), 5)
 
 
-def test_divide():
-    assert divide(10, 2) == 5
-
-
-def test_divide_by_zero():
-    with pytest.raises(ValueError):
+def test_divide_by_zero(self):
+    with self.assertRaises(ValueError):
         divide(5, 0)
